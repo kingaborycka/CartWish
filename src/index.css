@@ -16,3 +16,11 @@ body {
   display: flex;
   align-items: center;
 }
+
+a {
+  font-size: inherit;
+  cursor: pointer;
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+}
