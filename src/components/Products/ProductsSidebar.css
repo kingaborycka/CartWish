@@ -1,0 +1,16 @@
+.products_sidebar {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.products_sidebar h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.products_sidebar img {
+    margin-left: 0;
+    margin-right: 8px;
+    width: 30px;
+}
