@@ -70,9 +70,9 @@ const SignUpPage = () => {
                     {...register("address")}/> 
                     {errors.address &&  <em className='form_error'>{errors.address.message}</em>}
                 </div>
-                
-                <button type="submit" className='search_button form_submit'>Submit</button>
             </div>
+            
+            <button type="submit" className='search_button form_submit'>Submit</button>
         </form>
     </section>
   )
