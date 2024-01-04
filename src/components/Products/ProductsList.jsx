@@ -1,9 +1,12 @@
 import React from 'react'
 
 import "./ProductsList.css"
+import useData from '../../hooks/useData';
 import { ProductCard } from './ProductCard'
 
 const ProductsList = () => {
+  const {data, error} = useData("/products")
+
   return (
     <section className="products_list_section">
         <header className="align_center products_list_header">
@@ -18,16 +21,15 @@ const ProductsList = () => {
         </header>
 
         <div className="products_list">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+          {error && <em className='form_error'>{error}</em>}
+          {data?.products && data.products.map(product => <ProductCard key={product._id} 
+          id={product.id} 
+          image={product.images[0]} 
+          price={product.price} 
+          title={product.title} 
+          rating={product.reviews.rate} 
+          ratingCounts={product.reviews.counts}
+          stock={product.stock}/>)}
         </div>
     </section>
   )
