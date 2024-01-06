@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod/src/zod';
 
 import "./SignUpPage.css"
 import user from "../../assets/user.webp";
+import { signup } from '../../services/userServices';
 
 const schema = z.object({
     name: z.string().min(3, {message: "Name should be at least 3 characters."}),
@@ -23,8 +24,21 @@ const SignUpPage = () => {
         handleSubmit,   
         formState: {errors}
     } = useForm({resolver: zodResolver(schema)});
+
     const [profilePic, setProfilePic] = useState(null)
-    const onSubmit = (formData) => console.log(formData);
+    const [formError, setFormError] = useState("")
+
+    const onSubmit = async (formData) => {
+        try{
+            await signup(formData, profilePic);
+            window.location = "/";
+
+        } catch (err){
+            if(err.response && err.response.status === 400) {
+                setFormError(err.response.data.message)
+            }
+        }
+    }
 
   return (
     <section className='align_center form_page'>
@@ -71,7 +85,7 @@ const SignUpPage = () => {
                     {errors.address &&  <em className='form_error'>{errors.address.message}</em>}
                 </div>
             </div>
-            
+            { formError && <em className='form_error'>{formError}</em>}
             <button type="submit" className='search_button form_submit'>Submit</button>
         </form>
     </section>

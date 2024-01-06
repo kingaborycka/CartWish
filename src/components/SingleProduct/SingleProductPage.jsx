@@ -16,7 +16,7 @@ const SingleProductPage = () => {
         <section className="align_center single_product">
             {error && <em className='form_error'>{error.message}</em>}
             {isLoading && <Loader />}
-            {product && <><div className="align_center">
+            {product.images && <><div className="align_center">
                 <div className="single_product_thumbnails">
                     {
                         product.images.map((image, index) => 
@@ -36,7 +36,7 @@ const SingleProductPage = () => {
             <div className="single_product_details">
                 <h1 className="single_product_title">{product.title}</h1>
                 <p className="single_product_description">{product.description}</p>
-                <p className="single_product_price">{product.price.toFixed(2)}</p>
+                <p className="single_product_price">${product.price.toFixed(2)}</p>
 
                 <h2 className="quantity_title">Quantity:</h2>
                 <div className="align_center quantity_input">
