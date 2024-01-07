@@ -13,7 +13,7 @@ export const ProductCard = ({id, image, price, title, rating, ratingCounts, stoc
             </div>
             
             <div className='product_details'>
-                <h3 className='product_price'>{price}</h3>
+                <h3 className='product_price'>${price}</h3>
                 <p className="product_title">{title}</p>
                 
                 <footer className="align_center product_info_footer">
