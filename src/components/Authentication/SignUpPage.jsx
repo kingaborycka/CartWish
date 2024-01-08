@@ -5,7 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod/src/zod';
 
 import "./SignUpPage.css"
 import user from "../../assets/user.webp";
-import { signup } from '../../services/userServices';
+import { getUser, signup } from '../../services/userServices';
+import { Navigate } from 'react-router-dom';
 
 const schema = z.object({
     name: z.string().min(3, {message: "Name should be at least 3 characters."}),
@@ -40,6 +41,9 @@ const SignUpPage = () => {
         }
     }
 
+    if(getUser()) {
+        return <Navigate to="/" />
+    }
   return (
     <section className='align_center form_page'>
         <form className="authentication_form signup_form" onSubmit={handleSubmit(onSubmit)}>
